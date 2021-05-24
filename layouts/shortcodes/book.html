@@ -26,9 +26,9 @@
           {{ if in  $content "\n" }} 
             {{ .Inner | markdownify }}
           {{ else }}
-            <p>{{ .Inner  | markdownify }}</p>
+            <p>{{ .Inner  | markdownify }}
           {{ end }}
-        </p>
+      
       </div>
     </div>
 </div>

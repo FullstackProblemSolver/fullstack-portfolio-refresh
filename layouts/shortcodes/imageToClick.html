@@ -19,5 +19,54 @@
 
 
 
+{{ $img :="null"}}
+{{ if .Get "resize"}}
+    
+    {{- $pathHoller := .Get "imagePath" -}}
+    {{ with .Get $pathHoller }}]
+        {{$original := .Get .RelPermalink}}
+        {{$original}}
+    {{end}}
 
-<a href="{{ .Get "imagePath" }}" data-lightbox="image-1" data-title="{{ .Get "Capition"}}" ><img src="{{ .Get "imagePath" }}"  alt="Showing Domain Name Search" style="width:{{ .Get "width" }}" ></a>
+     {{/*{{{$pathHoller}}*/}}
+    {{- $img = .Page.Resources.GetMatch  $pathHoller -}}
+     {{/*{{{$img}}*/}}
+    {{$resizeValue := .Get "resize"}}
+    {{- $img = $img.Resize $resizeValue -}}
+    {{/*{{ $large = $large | images.Filter (images.GaussianBlur 6) (images.Pixelate 8) }}*/}}
+   
+
+
+{{ else }}
+    
+
+    {{- $pathHoller := .Get "imagePath" -}}
+    {{ with .Get $pathHoller }}]
+        {{$original := .Get .RelPermalink}}
+        {{$original}}
+    {{end}}
+
+      {{/*{{{$pathHoller}}*/}}
+
+
+    {{- $img = .Page.Resources.GetMatch  $pathHoller -}}
+     {{/*{{{$img}}*/}}
+    
+
+
+
+{{ end }}
+
+
+{{/*
+    {{ with .Get $pathHoller }}]
+    {{$original := .Get .RelPermalink}}
+    {{ .Scratch.Set "image" ($original.Resize "600px")}}
+{{end}}
+{{ .Scratch.Set "image" (.Get "imagePath" .Resize "600px")}}
+{{ $image := .Scratch.Get "image" }}
+{{$image}}
+*/}}
+
+<a href="{{ $img.RelPermalink}}" data-lightbox="image-1" data-title="{{ .Get "Capition"}}" ><img src="{{ $img.RelPermalink}}"  alt="{{ .Get "Capition"}}" style="width:{{ .Get "width" }}" ></a>
+
