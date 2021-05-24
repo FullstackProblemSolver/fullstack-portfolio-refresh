@@ -35,14 +35,26 @@
            
 {{ with $.Site.GetPage "hero.md" }}
 {{- .Content -}}
- {{ end }}
+{{ end }}
+{{ $testing:= (fileExists "/bio/index.md") }}
 
-          {{ with $.Site.GetPage "frontpage_bio.md" }} <section class="section content has-text-left">
+
+
+{{ if (fileExists "/bio/index.md") }}
+       {{ with $.Site.GetPage "/bio/index.md" }} <section class="section content has-text-left">
             <!-- <div class="content"> -->
               {{- .Content -}}
            <!-- </div> -->
       </section>
-      {{ end }}
+      {{- end -}}
+{{- else -}}
+
+      Your front page bio should be include as a content in the following path:
+      bio/index.html. This allows you to expand bio as content when you want.
+{{- end -}}
+
+     
+
       {{- partial "homepage-posts.html" . -}}
 
 
