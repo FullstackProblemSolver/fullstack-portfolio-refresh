@@ -1,0 +1,74 @@
+<section class="section is-small">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <h1 class="title section-title"> {{- .Site.Params.homepage.posts_title -}}</h1>
+        <h5 class="subtitle is-5 is-muted"></h5>
+        <div class="divider"></div>        
+          <div>&nbsp</div>
+          <div>&nbsp</div>
+          <div class="container">
+          {{/* This is to create list of Section pages */}}
+
+					{{$scratch := newScratch}}
+          {{ $featuredSections := slice }}  
+				  {{- if .Sections -}}
+					  {{- range .Sections -}}
+					    {{- range $i, $e := where .Data.Pages "Params.series" "featuredSection" -}}
+					      {{ $featuredSections := $scratch.Get "featuredSections"}}
+					      {{- $featuredSections := $featuredSections | append $e -}}
+					      {{ $scratch.Set "featuredSections" $featuredSections}}
+					    {{- end -}}
+					  {{- end -}}
+					{{- end -}}
+
+
+					{{ $featuredSections := $scratch.Get "featuredSections"}}
+
+				  {{ $pages := slice }} 
+          {{- if eq .Site.Params.homepage.useFeaturedSeries true -}}
+            {{ $pages = union (where .Site.Pages "Params.series" "featured") ($featuredSections) }} 
+          {{- else -}}
+            {{ $pages = union ($.Site.RegularPages ) ($featuredSections) }} 
+          {{- end -}}
+          
+          {{$limitPostsTo := 4}}
+          {{- if .Site.Params.homepage.limitPostsTo -}}
+            {{$limitPostsTo = .Site.Params.homepage.limitPostsTo}}
+          {{- end -}}
+          {{ $pages := first $limitPostsTo $pages.ByWeight}}
+                            
+              
+          <div class="container">
+            <div class="section is-small">
+              {{- $pagesEachPage := .Site.Params.homepage.articlesPerRow -}}
+                  <div class="columns is-flex">
+                    {{- range $index, $element := $pages -}}
+                        {{- if eq (mod $index $pagesEachPage) 0 -}}
+                          </div>
+                          <div class="columns">
+                        {{- end -}}
+                        {{- if  eq .Site.Params.homepage.cardType "square" -}}
+                          {{- partial "single/MUTEsummary.html" . -}}           
+                        {{- else -}}
+                          {{- partial "single/summary.html" . -}}
+                        {{- end -}}
+
+
+                      
+
+
+                    {{- end -}}
+                  </div>
+                </div>
+              </div>
+
+              
+              </div>
+          
+          
+            </div>
+          </div>
+        </div>
+    </section>
+
