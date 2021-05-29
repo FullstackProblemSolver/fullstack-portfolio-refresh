@@ -95,6 +95,17 @@
               </a>
             </li>
             {{ end }}
+            {{ if isset .Site.Params.footer.contact "link" }}
+            <li>
+              {{- with .Site.GetPage "/contact/index" -}}
+              <a href="{{- .RelPermalink -}}">
+                <span class="icon"><i class="fa fa-envelope"></i></span>
+                {{ .Site.Params.footer.contact.title }}
+              </a>
+              {{- end -}}
+            </li>
+            {{ end }}            
+
             {{ if isset .Site.Params.footer.facebook "link" }}
             <li>
               <a href="https://facebook.com/{{ .Site.Params.footer.facebook.link }}" target="_blank">
