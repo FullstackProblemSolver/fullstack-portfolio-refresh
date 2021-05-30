@@ -32,7 +32,7 @@
     {{- $img = .Page.Resources.GetMatch  $pathHoller -}}
      {{/*{{{$img}}*/}}
     {{$resizeValue := .Get "resize"}}
-    {{- $img = $img.Resize $resizeValue -}}
+    {{- $img = $img.Fit $resizeValue -}}
     {{/*{{ $large = $large | images.Filter (images.GaussianBlur 6) (images.Pixelate 8) }}*/}}
    
 
