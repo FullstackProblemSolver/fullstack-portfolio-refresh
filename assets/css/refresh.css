@@ -158,6 +158,11 @@ div.scroll::-webkit-scrollbar { width: 0px; }
   margin-top: auto;
 }
 
+.linkedbox{
+  display: flex;
+}
+
+
 #c2 {  flex-direction: column; }
 
 

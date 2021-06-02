@@ -65,17 +65,22 @@
 
 
 
-          {{ $pages := first 4 $pages.ByWeight}}
+{{$limitPostsTo := 4}}
+{{- if .Site.Params.homepage.limitPostsTo -}}
+  {{$limitPostsTo = .Site.Params.homepage.limitPostsTo}}
+{{- end -}}
+{{ $pages := first $limitPostsTo $pages.ByWeight}}
            
                             
               
                 <div class="container">
                   <div class="section is-small">
 
-                {{- $pagesEachPage := 2 -}}
-                  <div class="columns is-flex">
-                    {{- range $index, $element := $pages -}}
-                        {{- if eq (mod $index $pagesEachPage) 0 -}}
+
+                {{- $pagesEachPage := .Site.Params.homepage.articlesPerRow -}}
+                <div class="columns is-flex">
+                  {{- range $index, $element := $pages -}}
+                      {{- if eq (mod $index $pagesEachPage) 0 -}}
                           </div>
                           <div class="columns">
                         {{- end -}}

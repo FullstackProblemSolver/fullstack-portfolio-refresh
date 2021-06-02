@@ -54,9 +54,13 @@
 {{- end -}}
 
      
-
-      {{- partial "homepage-posts.html" . -}}
-
+{{- $cardType := .Site.Params.cardType -}}
+  {{if eq $cardType "longNews"}}
+    {{- partial "homepage-posts.html" . -}}
+  {{end}}
+  {{if eq $cardType "square"}}
+  {{- partial "posts-by-weights.html" . -}}
+{{end}}
 
   </div>
   

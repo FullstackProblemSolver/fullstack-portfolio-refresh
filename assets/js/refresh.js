@@ -47,7 +47,7 @@ $(document).ready(function () {
         // $(this).find("a").addClass("has-background-white-ter");
     });
 
-    $(".box").click(function() {
+    $(".linkedbox").click(function() {
         window.location = $(this).find("a").attr("href"); 
         return false;
       });
