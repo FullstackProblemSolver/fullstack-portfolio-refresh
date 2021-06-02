@@ -37,11 +37,13 @@
             {{$limitPostsTo = .Site.Params.homepage.limitPostsTo}}
           {{- end -}}
           {{ $pages := first $limitPostsTo $pages.ByWeight}}
-                            
+          {{$pagesEachPage := 2}}
+          {{- if .Site.Params.homepage.limitPostsTo -}}
+            {{$pagesEachPage = .Site.Params.homepage.articlesPerRow}}
+          {{- end -}}       
               
           <div class="container">
             <div class="section is-small">
-              {{- $pagesEachPage := .Site.Params.homepage.articlesPerRow -}}
                   <div class="columns is-flex">
                     {{- range $index, $element := $pages -}}
                         {{- if eq (mod $index $pagesEachPage) 0 -}}
