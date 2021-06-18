@@ -54,7 +54,7 @@
 {{- end -}}
 
      
-{{- $cardType := .Site.Params.cardType -}}
+{{- $cardType := .Site.Params.homepage.cardType -}}
   {{if eq $cardType "longNews"}}
     {{- partial "homepage-posts.html" . -}}
   {{end}}
