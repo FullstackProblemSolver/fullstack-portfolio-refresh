@@ -1,3 +1,5 @@
+@import "../utilities/mixins"
+
 $content-heading-color: $text-strong !default
 $content-heading-weight: $weight-semibold !default
 $content-heading-line-height: 1.125 !default
@@ -8,13 +10,9 @@ $content-blockquote-padding: 1.25em 1.5em !default
 
 $content-pre-padding: 1.25em 1.5em !default
 
-// Maybe the "$border: solid" is missing
-
-$content-table-cell-border-pre-code: 1px $border !default //added by me
-$content-table-cell-border: 1px $border solid !default // This was my modfification: 0px solid $border !default
-//$content-table-cell-border: 1px $border solid !default // This was the original
+$content-table-cell-border: 1px solid $border !default
 $content-table-cell-border-width: 0 0 1px !default
-$content-table-cell-padding: 0.25em 0.25em !default // The original: 0.5em 0.75em !default 
+$content-table-cell-padding: 0.5em 0.75em !default
 $content-table-cell-heading-color: $text-strong !default
 $content-table-head-cell-border-width: 0 0 2px !default
 $content-table-head-cell-color: $text-strong !default
@@ -27,8 +25,6 @@ $content-table-foot-cell-color: $text-strong !default
   li + li
     margin-top: 0.25em
   // Block
-  p
-    font-size: 1.15em // $size-medium
   p,
   dl,
   ol,
@@ -63,7 +59,7 @@ $content-table-foot-cell-color: $text-strong !default
     &:not(:first-child)
       margin-top: 1.3333em
   h4
-    font-size: 1.35em
+    font-size: 1.25em
     margin-bottom: 0.8em
   h5
     font-size: 1.125em
@@ -73,11 +69,11 @@ $content-table-foot-cell-color: $text-strong !default
     margin-bottom: 1em
   blockquote
     background-color: $content-blockquote-background-color
-    border-left: $content-blockquote-border-left
+    +ltr-property("border", $content-blockquote-border-left, false)
     padding: $content-blockquote-padding
   ol
     list-style-position: outside
-    margin-left: 2em
+    +ltr-property("margin", 2em, false)
     margin-top: 1em
     &:not([type])
       list-style-type: decimal
@@ -91,7 +87,7 @@ $content-table-foot-cell-color: $text-strong !default
         list-style-type: upper-roman
   ul
     list-style: disc outside
-    margin-left: 2em
+    +ltr-property("margin", 2em, false)
     margin-top: 1em
     ul
       list-style-type: circle
@@ -99,7 +95,7 @@ $content-table-foot-cell-color: $text-strong !default
       ul
         list-style-type: square
   dd
-    margin-left: 2em
+    +ltr-property("margin", 2em, false)
   figure
     margin-left: 2em
     margin-right: 2em
@@ -112,19 +108,17 @@ $content-table-foot-cell-color: $text-strong !default
       display: inline-block
     figcaption
       font-style: italic
-
   pre
     +overflow-touch
     overflow-x: auto
     padding: $content-pre-padding
     white-space: pre
     word-wrap: normal
-
   sup,
   sub
     font-size: 75%
   table
-    width: 100% // I commented it for code style 
+    width: 100%
     td,
     th
       border: $content-table-cell-border
@@ -134,7 +128,7 @@ $content-table-foot-cell-color: $text-strong !default
     th
       color: $content-table-cell-heading-color
       &:not([align])
-        text-align: left
+        text-align: inherit
     thead
       td,
       th
@@ -146,9 +140,6 @@ $content-table-foot-cell-color: $text-strong !default
         border-width: $content-table-foot-cell-border-width
         color: $content-table-foot-cell-color
     tbody
-      //td                                   // This was 
-      //  &:first-child                      // added by 
-      //    border-right: 1px solid $border; // me for code style
       tr
         &:last-child
           td,
@@ -160,6 +151,8 @@ $content-table-foot-cell-color: $text-strong !default
   // Sizes
   &.is-small
     font-size: $size-small
+  &.is-normal
+    font-size: $size-normal
   &.is-medium
     font-size: $size-medium
   &.is-large
