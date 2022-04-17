@@ -1,19 +1,27 @@
 {{- define "main" -}}
   {{- partial "navbar.html" . -}}
   {{- partial "navbar-clone.html" . -}}
-  
+  {{"<!-- HUGO: section.html //-->" | safeHTML }}
   {{- $cardType := .Site.Params.cardType -}}
+
+
+
   {{if eq $cardType "longNews"}}
+  section me
+  <div class="columns">
+  <div class="column is-3"></div>
+  <div class="column is-6">
     {{- partial "section-posts-longnews.html" . -}}
+  </div>
+   
+  <div class="column is-3"></div>
+
+</div>
   {{- end -}}
 
 
   {{if eq $cardType "square"}}
-
-
-
-    <section class="section is-medium">
-      
+    <section class="section is-small">
         <div class="container">
           <div class="columns">
             {{ $pages :=  .Paginator.Pages}}
