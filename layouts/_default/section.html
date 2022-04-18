@@ -1,7 +1,7 @@
 {{- define "main" -}}
   {{- partial "navbar.html" . -}}
   {{- partial "navbar-clone.html" . -}}
-  {{"<!-- HUGO: section.html //-->" | safeHTML }}
+  {{"<!-- HUGO: _default/section.html //-->" | safeHTML }}
   {{- $cardType := .Site.Params.cardType -}}
 
 
@@ -41,6 +41,9 @@
 
 
           {{ $pages :=  .Paginator.Pages}}
+
+
+          {{/*<h1 {{if gt (len .Paginator.Pages) 50}} class="more than 4"{{end}}>Test</h1>*/}}
                      
               <div class="section is-small">
                 <div class="container">
@@ -53,8 +56,11 @@
                           <div class="columns">
                         {{- end -}}
                         
-                    
+                        {{ .Scratch.Set "colDiv12" 6 }}
+                        {{ .Scratch.Set "colDiv12" (div 12 .Site.Params.articlesPerRow) }}
                         {{ partial "single/MUTEsummary.html" . }}
+                        {{/* {{partial "single/MUTEsummary.html" (dict "context" . "myvar" 50  }}*/}}
+
                         {{- end -}}
                   </div>
                   

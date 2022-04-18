@@ -57,7 +57,7 @@
             {{- end -}}
           </a>
         {{- end -}}
-        {{ range .Site.RegularPages }}
+        {{ range .Site.RegularPages.ByWeight }}
           {{- if eq .Params.showInMenu true -}}
           <a href="{{- .Permalink | relURL -}}" class="navbar-item is-secondary">
             {{- if $showIcons -}}
