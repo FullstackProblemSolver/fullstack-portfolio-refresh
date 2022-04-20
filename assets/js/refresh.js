@@ -48,7 +48,15 @@ $(document).ready(function () {
     });
 
     $(".linkedbox").click(function() {
-        window.location = $(this).find("a").attr("href"); 
+        //window.location = $(this).find("a").attr("href");
+        console.log($(this).find("a"))
+        console.log($(this).find("div").hasClass("newWindowApp"))
+        if ($(this).find("div").hasClass("newWindowApp")){
+            window.open($(this).find("a").attr("href"), '_blank');
+        }else{
+            window.location = $(this).find("a").attr("href");
+        }
+       
         return false;
       });
 

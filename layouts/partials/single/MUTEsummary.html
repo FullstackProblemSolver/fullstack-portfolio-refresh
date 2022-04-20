@@ -23,6 +23,7 @@
 
       {{ if .Params.extApplUrl }}
       <a href="{{ .Params.extApplUrl }}"><img src="{{- $image.Permalink | relURL -}}" alt=""></a>
+      <div class = "newWindowApp"></div>
       {{ else }}
       <a href="{{- .Permalink | relURL -}}"><img src="{{- $image.Permalink | relURL -}}" alt=""></a>
       {{ end }}
