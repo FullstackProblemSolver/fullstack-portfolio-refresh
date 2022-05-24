@@ -1,6 +1,6 @@
 {{- define "main" -}}
 {{"<!-- HUGO: taxonomy.html //-->" | safeHTML }}
-hi
+
   {{- partial "navbar.html" . -}}
   {{- partial "navbar-clone.html" . -}}
   
@@ -45,7 +45,6 @@ hi
                           </div>
                           <div class="columns">
                         {{- end -}}
-                        {{.Title}}
                         {{ partial "single/MUTEsummary.html" . }}
                         {{- end -}}
                   </div>
