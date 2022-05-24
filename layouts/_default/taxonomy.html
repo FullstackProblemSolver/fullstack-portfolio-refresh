@@ -1,11 +1,11 @@
 {{- define "main" -}}
 {{"<!-- HUGO: taxonomy.html //-->" | safeHTML }}
+hi
   {{- partial "navbar.html" . -}}
   {{- partial "navbar-clone.html" . -}}
   
   {{- $cardType := .Site.Params.cardType -}}
   {{if eq $cardType "longNews"}}
-  TAXONOMY.HTML
     {{- partial "taxonomy-longnews.html" . -}}
   {{- end -}}
 
@@ -45,8 +45,7 @@
                           </div>
                           <div class="columns">
                         {{- end -}}
-                        
-    
+                        {{.Title}}
                         {{ partial "single/MUTEsummary.html" . }}
                         {{- end -}}
                   </div>
